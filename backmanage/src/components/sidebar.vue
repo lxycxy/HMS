@@ -51,11 +51,11 @@ const items = [
 	{
 		icon: 'el-icon-list',
 		index: '/table',
-		title: '药品信息管理',
+		title: '疫情风险地管理',
 	},
 	{
 		icon: 'el-icon-list',
-		index: '/userlist',
+		index: '/userslist',
 		title: '用户列表',
 	},
 ];
@@ -69,6 +69,7 @@ const sidebar = useSidebarStore();
 </script>
 
 <style scoped>
+
 .sidebar {
 	display: block;
 	position: absolute;

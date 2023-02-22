@@ -1,11 +1,67 @@
-<template>
-		<div>
-      hhhh
-    </div>
+<template v-show="user.is_login">
+	<div>
+		<el-row :gutter="20">
+			<el-col :span="8">
+				<el-card shadow="hover" class="mgb20" style="margin-top: 10px">
+					<div class="user-info">
+						<el-avatar :size="120" :src="qqImg" />
+						<div class="user-info-cont">
+							<div class="user-info-name">{{ name }}</div>
+						</div>
+					</div>
+					<div class="user-info-list">
+						<span>超级管理员</span>
+					</div>
+				</el-card>
+			</el-col>
+			<el-col :span="16">
+        <el-card class="box-card">
+          <div class="grid-content grid-con-1">
+            <el-icon class="grid-con-icon"><User /></el-icon>
+            <div class="grid-cont-right">
+              <div class="grid-num">11</div>
+              <div>用户数量</div>
+            </div>
+          </div>
+          <div class="grid-content grid-con-2">
+            <el-icon class="grid-con-icon"><User /></el-icon>
+            <div class="grid-cont-right">
+              <div class="grid-num">11</div>
+              <div>飞机航线</div>
+            </div>
+          </div>
+          <div class="grid-content grid-con-3">
+            <el-icon class="grid-con-icon"><User /></el-icon>
+            <div class="grid-cont-right">
+              <div class="grid-num">11</div>
+              <div>火车路线</div>
+            </div>
+          </div>
+          <div class="grid-content grid-con-2">
+            <el-icon class="grid-con-icon"><User /></el-icon>
+            <div class="grid-cont-right">
+              <div class="grid-num">11</div>
+              <div>汽车路线</div>
+            </div>
+          </div>
+          <div class="grid-content grid-con-1">
+            <el-icon class="grid-con-icon"><User /></el-icon>
+            <div class="grid-cont-right">
+              <div class="grid-num">11</div>
+              <div>城市数量</div>
+            </div>
+          </div>
+        </el-card>
+
+			</el-col>
+		</el-row>
+	</div>
 </template>
 
 <script setup lang="ts" name="dashboard">
+import qqImg from '../assets/img/qq.png';
 
+const name = sessionStorage.getItem("username");
 </script>
 
 <style scoped>

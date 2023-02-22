@@ -1,12 +1,14 @@
-<template>
+<template v-show="store.is_login">
 	<div class="header">
-		<div class="logo">简易医疗信息管理系统</div>
+		<div class="logo"> 医疗信息管理系统</div>
 		<div class="header-right">
 			<div class="header-user-con">
-				<el-avatar class="user-avator" :size="30" :src="QQImg" />
+				<!-- 用户头像 -->
+				<el-avatar class="user-avator" :size="30" :src="qqImg" />
+				<!-- 用户名下拉菜单 -->
 				<el-dropdown class="user-name" trigger="click" @command="handleCommand">
 					<span class="el-dropdown-link">
-						{{name}}
+						{{ name }}
 						<el-icon class="el-icon--right">
 							<arrow-down />
 						</el-icon>
@@ -24,14 +26,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import QQImg from '../assets/img/QQ.png'
+import qqImg from '../assets/img/qq.png';
 
-onMounted(() => {
 
-});
-
+const name = sessionStorage.getItem("username");
 // 用户名下拉菜单选择事件
 const router = useRouter();
 const handleCommand = (command: string) => {
@@ -42,8 +41,6 @@ const handleCommand = (command: string) => {
 		router.push('/user');
 	}
 };
-
-const name = sessionStorage.getItem("username");
 
 
 </script>
@@ -71,35 +68,7 @@ const name = sessionStorage.getItem("username");
 	height: 70px;
 	align-items: center;
 }
-.btn-fullscreen {
-	transform: rotate(45deg);
-	margin-right: 5px;
-	font-size: 24px;
-}
-.btn-bell,
-.btn-fullscreen {
-	position: relative;
-	width: 30px;
-	height: 30px;
-	text-align: center;
-	border-radius: 15px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-}
-.btn-bell-badge {
-	position: absolute;
-	right: 4px;
-	top: 0px;
-	width: 8px;
-	height: 8px;
-	border-radius: 4px;
-	background: #f56c6c;
-	color: #fff;
-}
-.btn-bell .el-icon-lx-notice {
-	color: #fff;
-}
+
 .user-name {
 	margin-left: 10px;
 }
@@ -112,7 +81,5 @@ const name = sessionStorage.getItem("username");
 	display: flex;
 	align-items: center;
 }
-.el-dropdown-menu__item {
-	text-align: center;
-}
+
 </style>

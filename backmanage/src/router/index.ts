@@ -17,33 +17,32 @@ const routes:RouteRecordRaw[] = [
                     author: true,
                 },
                 component: () => import ( /* webpackChunkName: "dashboard" */ "../views/dashboard.vue")
+            }, 
+            {
+                path: "/userslist",
+                name: "userslist",
+                meta: {
+                    title: '用户列表',
+                    author: true,
+                },
+                component: () => import ( /* webpackChunkName: "dashboard" */ "../views/userslist.vue")
             },{
                 path: "/table",
-                name: "table",
+                name: "basetable",
                 meta: {
-                    title: '药品信息管理',
+                    title: '疫情风险低管理',
                     author: true,
                 },
                 component: () => import ( /* webpackChunkName: "table" */ "../views/table.vue")
-            },
-            {
-                path: "/userlist",
-                name: "userslist",
-                meta: {
-                    title: '用户管理',
-                    author: true,
-                },
-                component: () => import ( /* webpackChunkName: "userlist" */ "../views/userlist.vue")
-            },
-            {
-                path: "/user",
-                name: "user",
+            },  {
+                path: '/user',
+                name: 'user',
                 meta: {
                     title: '个人中心',
                     author: true,
                 },
-                component: () => import ( /* webpackChunkName: "user" */ "../views/user.vue")
-            },
+                component: () => import (/* webpackChunkName: "user" */ '../views/user.vue')
+            }
         ]
     }, {
         path: "/login",

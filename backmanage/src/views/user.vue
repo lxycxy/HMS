@@ -8,9 +8,9 @@
 					</template>
 					<div class="info">
 						<div class="info-image">
-							<el-avatar :size="100" :src="QQImg" />
+							<el-avatar :size="100" :src="qqImg" />
 						</div>
-						<div class="info-name"> {{ name }} </div>
+						<div class="info-name">{{ name }}</div>
 						<div class="info-desc">不可能！我的代码怎么可能会有bug！</div>
 					</div>
 				</el-card>
@@ -18,10 +18,11 @@
 </template>
 
 <script setup lang="ts" name="user">
-import QQImg from '../assets/img/QQ.png'
+import qqImg from '../assets/img/qq.png'
 import 'cropperjs/dist/cropper.css';
 
-const name = sessionStorage.getItem('username');
+const name = localStorage.getItem('username');
+
 
 </script>
 
