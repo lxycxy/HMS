@@ -18,7 +18,9 @@
 						</template>
 						<template v-for="subItem in item.subs">
 							<el-menu-item :index="subItem.index">
-								<i :class="subItem.icon"></i>
+                <el-icon>
+                  <component :is="item.icon"></component>
+                </el-icon>
 								{{ subItem.title }}
 							</el-menu-item>
 						</template>
@@ -27,7 +29,9 @@
 				<template v-else>
 					<el-menu-item :index="item.index" :key="item.index">
 						<template #title>
-							<i :class="item.icon"></i>
+              <el-icon>
+                <component :is="item.icon"></component>
+              </el-icon>
 							<span> {{item.title}} </span>
 						</template>
 					</el-menu-item>
@@ -44,17 +48,17 @@ import { useRoute } from 'vue-router';
 
 const items = [
 	{
-		icon: 'el-icon-home',
+		icon: 'House',
 		index: '/dashboard',
 		title: '系统首页',
 	},
 	{
-		icon: 'el-icon-list',
+		icon: 'FirstAidKit',
 		index: '/table',
-		title: '疫情风险地管理',
+		title: '药品信息',
 	},
 	{
-		icon: 'el-icon-list',
+		icon: 'User',
 		index: '/userslist',
 		title: '用户列表',
 	},
@@ -87,4 +91,6 @@ const sidebar = useSidebarStore();
 .sidebar > ul {
 	height: 100%;
 }
+
+
 </style>

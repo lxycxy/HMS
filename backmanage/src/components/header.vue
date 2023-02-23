@@ -58,6 +58,7 @@ const handleCommand = (command: string) => {
 	float: left;
 	width: 300px;
 	line-height: 70px;
+  margin-left: 40px;
 }
 .header-right {
 	float: right;
