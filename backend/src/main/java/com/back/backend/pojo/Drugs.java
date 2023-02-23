@@ -1,4 +1,4 @@
-package com.back.pojo;
+package com.back.backend.pojo;
 
 import java.util.Date;
 

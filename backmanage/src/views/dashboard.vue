@@ -20,14 +20,14 @@
           <div class="grid-content grid-con-1">
             <el-icon class="grid-con-icon"><User /></el-icon>
             <div class="grid-cont-right">
-              <div class="grid-num">11</div>
+              <div class="grid-num">{{userCount}}</div>
               <div>用户数量</div>
             </div>
           </div>
           <div class="grid-content grid-con-2">
             <el-icon class="grid-con-icon"><FirstAidKit /></el-icon>
             <div class="grid-cont-right">
-              <div class="grid-num">11</div>
+              <div class="grid-num">{{ drugCount }}</div>
               <div>药品种类</div>
             </div>
           </div>
@@ -40,6 +40,23 @@
 
 <script setup lang="ts" name="dashboard">
 import qqImg from '../assets/img/qq.png';
+import axios from "axios";
+import {ref} from "vue";
+
+let userCount = ref(0);
+let drugCount = ref(0);
+const fresh = () => {
+
+  axios({
+    url:"http://localhost:3000/api/getdata/",
+    method: "GET",
+  }).then((resp) => {
+    userCount.value = resp.data.userCount;
+    //drugCount.value = resp.data.drugCount;
+  })
+}
+
+fresh();
 
 const name = sessionStorage.getItem("username");
 </script>

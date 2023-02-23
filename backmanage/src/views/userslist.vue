@@ -2,11 +2,12 @@
   <div class="userlist">
     <div class="users">
       <el-table :data="filterTableData" style="width: 100%">
+        <el-table-column label="ID" prop="id" />
         <el-table-column label="姓名" prop="name" />
         <el-table-column label="年龄" prop="age" />
         <el-table-column label="性别" prop="sex" />
         <el-table-column label="职务" prop="role" />
-        <el-table-column label="注册时间" prop="date" />
+        <el-table-column label="注册时间" prop="time" />
         <el-table-column align="right">
           <template #header>
             <el-input v-model="search" size="small" placeholder="输入用户名查找" />
@@ -79,7 +80,9 @@
 import {computed, reactive, ref} from 'vue'
 import {ElMessageBox} from "element-plus";
 import {ElMessage} from "element-plus";
+import axios from "axios";
 interface User {
+  id:number
   date: string
   age:number
   sex:string
@@ -88,6 +91,7 @@ interface User {
   tel:string,
   address: string
   password:string
+  time:Date
 }
 
 let form = reactive({
@@ -101,11 +105,24 @@ let form = reactive({
 })
 let dialogVisible = ref(false);
 const search = ref('')
+
+const freshTable = () => {
+  axios({
+    url:"http://localhost:3000/api/getusers/",
+    method:"GET",
+  }).then((resp) => {
+    tableData.value = resp.data;
+    console.log(resp.data);
+  })
+}
+
+freshTable();
+
 /**
  * 搜索
  */
 const filterTableData = computed(() =>
-    tableData.filter(
+    tableData.value.filter(
         (data) =>
             !search.value ||
             data.name.toLowerCase().includes(search.value.toLowerCase())
@@ -133,14 +150,32 @@ const handleDelete = (index: number, row: User) => {
         cancelButtonText: '取消',
         type: 'warning',
       }
-  )
-      .then(() => {
-        ElMessage({
-          type: 'success',
-          message: '删除成功',
+  ).then(() => {
+
+        console.log(row.id)
+        axios({
+          url:"http://localhost:3000/api/deleteuser/",
+          method:"POST",
+          params:{
+            id: row.id,
+          }
+        }).then((resp) => {
+          console.log(resp.data)
+          if(resp.data.info === "error") {
+            ElMessage({
+              type: 'error',
+              message: '删除失败',
+            })
+          } else {
+            freshTable();
+            ElMessage({
+              type: 'success',
+              message: '删除成功',
+            })
+          }
         })
-      })
-      .catch(() => {
+
+      }).catch(() => {
         ElMessage({
           type: 'info',
           message: '确认取消',
@@ -148,76 +183,8 @@ const handleDelete = (index: number, row: User) => {
       })
 }
 
-const tableData: User[] = [
-  {
-    date: '2016-05-03',
-    age:18,
-    sex:'男',
-    tel:'110',
-    role:'医师',
-    name: 'Tom',
-    password:'111',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'John',
-    age:18,
-    tel:'110',
-    sex:'男',
-    role:'医师',
-    password:'111',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Morgan',
-    age:18,
-    tel:'110',
-    sex:'男',
-    role:'医师',
-    password:'111',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Jessy',
-    age:18,
-    sex:'男',
-    tel:'110',
-    role:'医师',
-    password:'111',
-    address: 'No. 189, Grove St, Los Angeles',
-  },{
-    date: '2016-05-01',
-    name: 'Jessy',
-    age:18,
-    tel:'110',
-    sex:'男',
-    role:'医师',
-    password:'111',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Jessy',
-    age:18,
-    tel:'110',
-    sex:'男',
-    role:'医师',
-    password:'111',
-    address: 'No. 189, Grove St, Los Angeles',
-  },{
-    date: '2016-05-01',
-    name: 'Jessy',
-    age:18,
-    tel:'110',
-    sex:'男',
-    role:'医师',
-    password:'111',
-    address: 'No. 189, Grove St, Los Angeles',
-  }
-]
+const tableData = ref<User[]> ([]);
+
 </script>
 
 <style scoped>
