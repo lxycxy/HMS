@@ -10,14 +10,11 @@ import java.util.Map;
 @RestController
 public class DataController {
 
-
     @Autowired
     GetDataService getDataService;
 
-
     @GetMapping("api/getdata/")
     public Map<String, String> getData() {
-
         return getDataService.getData();
     }
 }

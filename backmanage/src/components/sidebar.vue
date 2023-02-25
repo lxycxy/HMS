@@ -54,7 +54,7 @@ const items = [
 	},
 	{
 		icon: 'FirstAidKit',
-		index: '/table',
+		index: '/drugs',
 		title: '药品信息',
 	},
 	{

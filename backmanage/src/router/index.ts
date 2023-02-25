@@ -27,13 +27,13 @@ const routes:RouteRecordRaw[] = [
                 },
                 component: () => import ( /* webpackChunkName: "dashboard" */ "../views/userslist.vue")
             },{
-                path: "/table",
-                name: "basetable",
+                path: "/drugs",
+                name: "drugs",
                 meta: {
                     title: '药品信息',
                     author: true,
                 },
-                component: () => import ( /* webpackChunkName: "table" */ "../views/table.vue")
+                component: () => import ( /* webpackChunkName: "drugs" */ "../views/drugs.vue")
             },  {
                 path: '/user',
                 name: 'user',
