@@ -1,9 +1,7 @@
 package com.back.backend.Mapper;
 
 import com.back.backend.pojo.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -16,4 +14,13 @@ public interface UserMapper {
 
     @Delete("DELETE FROM USER WHERE id = #{id}")
     void deleteUser(Integer id);
+
+    @Insert("insert into user(id, name, password, role, tel, age, sex, address, time) " +
+            "values(#{id},#{name},#{password},#{role},#{tel},#{age},#{sex},#{address},#{time})")
+    void addUser(User user);
+
+    @Update("update user set name = #{name},  password = #{password}, role = #{role}, tel = #{tel}, age = #{age}," +
+            " sex = #{sex},  address = #{address}, time = #{time}")
+
+    void updateUser(User user);
 }
