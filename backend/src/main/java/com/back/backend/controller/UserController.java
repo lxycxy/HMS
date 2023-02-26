@@ -1,8 +1,10 @@
 package com.back.backend.controller;
 
 import com.back.backend.pojo.User;
+import com.back.backend.service.user.AddUserService;
 import com.back.backend.service.user.DeleteUserService;
 import com.back.backend.service.user.GetUsersService;
+import com.back.backend.service.user.UpdateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,11 +18,18 @@ import java.util.Map;
 @RestController
 public class UserController {
 
+
     @Autowired
     GetUsersService getUsersService;
 
     @Autowired
     DeleteUserService deleteUserService;
+
+    @Autowired
+    AddUserService addUserService;
+
+    @Autowired
+    UpdateUserService updateUserService;
 
     @GetMapping("/api/getusers/")
     public List<User> getUsers() {
@@ -42,5 +51,18 @@ public class UserController {
         }
 
         return deleteUserService.deleteUser(userId);
+    }
+
+    @PostMapping("/api/updateuser/")
+    public Map<String, String> updateUser(@RequestParam Map<String, String> map) {
+
+        return updateUserService.updateUser(map);
+    }
+
+    @GetMapping("/api/adduser")
+
+    public Map<String, String> addUser(@RequestParam Map<String, String> map) {
+
+        return addUserService.addUser(map);
     }
 }
