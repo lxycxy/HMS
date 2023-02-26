@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Drugs {
-    private Integer drugsId;
+    private Integer id;
 
     private String name;
 
