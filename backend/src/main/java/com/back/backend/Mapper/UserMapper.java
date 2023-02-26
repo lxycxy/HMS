@@ -20,7 +20,7 @@ public interface UserMapper {
     void addUser(User user);
 
     @Update("update user set name = #{name},  password = #{password}, role = #{role}, tel = #{tel}, age = #{age}," +
-            " sex = #{sex},  address = #{address}, time = #{time}")
+            " sex = #{sex}, address = #{address} where id = #{id}")
 
     void updateUser(User user);
 }

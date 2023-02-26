@@ -6,8 +6,7 @@ import com.back.backend.service.user.UpdateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,10 +33,8 @@ public class UpdateUserServiceImpl implements UpdateUserService {
 
             age = Integer.parseInt(map.get("age"));
             id = Integer.parseInt(map.get("id"));
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date time = sdf.parse(map.get("time"));
 
-            userMapper.updateUser(new User(id, name, password, role, tel, age, sex, address, time));
+            userMapper.updateUser(new User(id, name, password, role, tel, age, sex, address, null));
 
         } catch (Exception e) {
             resp.put("info", "error");

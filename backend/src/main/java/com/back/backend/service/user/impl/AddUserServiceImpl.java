@@ -3,11 +3,10 @@ package com.back.backend.service.user.impl;
 import com.back.backend.Mapper.UserMapper;
 import com.back.backend.pojo.User;
 import com.back.backend.service.user.AddUserService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,8 +36,7 @@ public class AddUserServiceImpl implements AddUserService {
 
             age = Integer.parseInt(map.get("age"));
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date time = sdf.parse(map.get("time"));
+            Date time = new Date();
 
             userMapper.addUser(new User(null, name, password, role, tel, age, sex, address, time));
 
