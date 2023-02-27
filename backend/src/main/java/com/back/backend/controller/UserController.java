@@ -55,23 +55,14 @@ public class UserController {
 
     @PostMapping("/api/updateuser/")
     public Map<String, String> updateUser(@RequestParam Map<String, String> map) {
-<<<<<<< HEAD
         return updateUserService.updateUser(map);
     }
 
     @PostMapping("/api/adduser/")
 
     public Map<String, String> addUser(@RequestParam Map<String, String> map) {
-=======
 
         return updateUserService.updateUser(map);
     }
 
-    @GetMapping("/api/adduser")
-
-    public Map<String, String> addUser(@RequestParam Map<String, String> map) {
-
->>>>>>> c32666f732b8fd120fc79a706b631e6f9eda0792
-        return addUserService.addUser(map);
-    }
 }

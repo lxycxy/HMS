@@ -1,5 +1,6 @@
 package com.back.backend.service.data.impl;
 
+import com.back.backend.Mapper.DrugsMapper;
 import com.back.backend.Mapper.UserMapper;
 import com.back.backend.pojo.User;
 import com.back.backend.service.data.GetDataService;
@@ -15,6 +16,8 @@ public class GetDataServiceImpl implements GetDataService {
     @Autowired
     UserMapper userMapper;
 
+    @Autowired
+    DrugsMapper drugsMapper;
     @Override
     public Map<String, String> getData() {
 
@@ -22,7 +25,7 @@ public class GetDataServiceImpl implements GetDataService {
 
         List<User> userList = userMapper.getAll();
         resp.put("userCount", String.valueOf(userList.size()));
-
+        resp.put("drugCount", String.valueOf(drugsMapper.getAll().size()));
         return resp;
     }
 }

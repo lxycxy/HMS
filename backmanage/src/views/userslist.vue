@@ -21,7 +21,7 @@
               </el-select>
             </el-col>
 
-            <el-col :span="5">
+            <el-col :span="3" :offset="8">
               <el-button type="primary" :icon="Plus" @click="handleAdd">添加用户</el-button>
             </el-col>
 
@@ -63,6 +63,7 @@
         title="修改信息"
         width="30%"
         :close-on-click-modal="false"
+        :show-close="false"
     >
       <el-form :model="form">
         <el-form-item label="姓名" label-width="80">
@@ -114,6 +115,7 @@
         title="添加用户"
         width="30%"
         :close-on-click-modal="false"
+        :show-close="false"
     >
       <el-form :model="form">
         <el-form-item label="姓名" label-width="80">

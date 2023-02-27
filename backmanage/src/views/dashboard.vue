@@ -52,7 +52,7 @@ const fresh = () => {
     method: "GET",
   }).then((resp) => {
     userCount.value = resp.data.userCount;
-    //drugCount.value = resp.data.drugCount;
+    drugCount.value = resp.data.drugCount;
   })
 }
 
