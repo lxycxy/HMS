@@ -218,6 +218,7 @@ let dialogVisible = ref(false);
 let addVisble = ref(false)
 const idSearch = ref('')
 const nameSearch = ref('')
+const username = sessionStorage.getItem("username");
 
 const freshTable = () => {
   axios({

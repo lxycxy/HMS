@@ -11,7 +11,7 @@
 					</div>
 
 					<div class="user-info-list">
-						<span >超级管理员</span>
+						<span >管理员</span>
 					</div>
 				</el-card>
 			</el-col>

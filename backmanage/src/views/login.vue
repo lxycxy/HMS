@@ -36,8 +36,9 @@ import { useTagsStore } from '../store/tags';
 
 import { useRouter } from 'vue-router';
 
-import type { FormInstance, FormRules } from 'element-plus';
+import { ElMessage, FormInstance, FormRules } from 'element-plus';
 import { Lock, User } from '@element-plus/icons-vue';
+import axios from 'axios';
 
 
 interface LoginInfo {
@@ -47,8 +48,8 @@ interface LoginInfo {
 
 const router = useRouter();
 const param = reactive<LoginInfo>({
-	username: 'admin',
-	password: '123123'
+	username: '',
+	password: ''
 });
 
 const rules: FormRules = {
@@ -65,11 +66,30 @@ const rules: FormRules = {
 const login = ref<FormInstance>();
 
 const submitForm = (formEl: FormInstance | undefined) => {
-  if(param.username === 'admin' && param.password === '123123') {
-    sessionStorage.setItem("username", "admin");
-    sessionStorage.setItem("is_login", "true");
-    router.push('/dashboard');
-  }
+
+  axios({
+	url:"http://localhost:3000/api/login/",
+	method:"POST",
+	params:{
+		name:param.username,
+		password:param.password,
+	}
+  }).then((resp) => {
+	if(resp.data.info === 'success') {
+		ElMessage({
+        type: 'success',
+        message: '登录成功',
+      })
+		sessionStorage.setItem("username", param.username);
+		sessionStorage.setItem("is_login", "true");
+		router.push('/dashboard');
+	} else {
+		ElMessage({
+        type: 'error',
+        message: '登录失败',
+      })
+	}
+  })
 }
 
 const tags = useTagsStore();

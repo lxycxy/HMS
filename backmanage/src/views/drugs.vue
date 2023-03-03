@@ -37,34 +37,34 @@
       </el-table>
     </el-card>
 
-    <el-dialog v-model="dialogVisible" title="修改药品信息" width="30%" :close-on-click-modal="false">
+    <el-dialog v-model="dialogVisible" title="修改药品信息" width="30%" :close-on-click-modal="false" :show-close="false">
       <el-form :model="form">
         <el-form-item label="药品名称" label-width="80">
-          <el-input v-model="form.name" />
+          <el-input v-model="form.name" placeholder="输入药品名称" />
         </el-form-item>
         <el-form-item label="售价" label-width="80">
-          <el-input v-model="form.price" />
+          <el-input v-model="form.price" placeholder="输入售价" />
         </el-form-item>
         <el-form-item label="进价" label-width="80">
-          <el-input v-model="form.purchasePrice" />
+          <el-input v-model="form.purchasePrice" placeholder="输入进价" />
         </el-form-item>
         <el-form-item label="库存数量" label-width="80">
-          <el-input v-model="form.num" />
+          <el-input v-model="form.num" placeholder="输入库存数量" />
         </el-form-item>
         <el-form-item label="生产日期" label-width="80">
-          <el-date-picker value-format="YYYY-MM-DD" v-model="form.productDate" type="date" placeholder="Pick a day" />
+          <el-date-picker value-format="YYYY-MM-DD" v-model="form.productDate" type="date" placeholder="选择生产日期" />
         </el-form-item>
         <el-form-item label="保质期" label-width="80">
-          <el-date-picker value-format="YYYY-MM-DD" v-model="form.qualityPeriod" type="date" placeholder="Pick a day" />
+          <el-date-picker value-format="YYYY-MM-DD" v-model="form.qualityPeriod" type="date" placeholder="选择保质期" />
         </el-form-item>
         <el-form-item label="引入日期" label-width="80">
-          <el-date-picker value-format="YYYY-MM-DD" v-model="form.introduceDate" type="date" placeholder="Pick a day" />
+          <el-date-picker value-format="YYYY-MM-DD" v-model="form.introduceDate" type="date" placeholder="选择引入日期" />
         </el-form-item>
         <el-form-item label="生产厂商" label-width="80">
-          <el-input v-model="form.productUnit" />
+          <el-input v-model="form.productUnit" placeholder="输入生产厂商" />
         </el-form-item>
         <el-form-item label="供货工厂" label-width="80">
-          <el-input v-model="form.supplyUnit" />
+          <el-input v-model="form.supplyUnit" placeholder="输入供货工厂" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -77,19 +77,19 @@
       </template>
     </el-dialog>
 
-    <el-dialog v-model="addVisble" title="新增药品" width="30%" :close-on-click-modal="false">
+    <el-dialog v-model="addVisble" title="新增药品" width="30%" :close-on-click-modal="false" :show-close="false">
       <el-form :model="form">
         <el-form-item label="药品名称" label-width="80">
-          <el-input v-model="form.name" />
+          <el-input v-model="form.name" placeholder="输入药品名称" />
         </el-form-item>
         <el-form-item label="售价" label-width="80">
-          <el-input v-model="form.price" />
+          <el-input v-model="form.price" placeholder="输入售价" />
         </el-form-item>
         <el-form-item label="进价" label-width="80">
-          <el-input v-model="form.purchasePrice" />
+          <el-input v-model="form.purchasePrice" placeholder="输入进价" />
         </el-form-item>
         <el-form-item label="库存数量" label-width="80">
-          <el-input v-model="form.num" />
+          <el-input v-model="form.num" placeholder="输入库存数量" />
         </el-form-item>
         <el-form-item label="生产日期" label-width="80">
           <el-date-picker value-format="YYYY-MM-DD" v-model="form.productDate" type="date" placeholder="选择生产日期" />
@@ -101,10 +101,10 @@
           <el-date-picker value-format="YYYY-MM-DD" v-model="form.introduceDate" type="date" placeholder="选择引入日期" />
         </el-form-item>
         <el-form-item label="生产厂商" label-width="80">
-          <el-input v-model="form.productUnit" />
+          <el-input v-model="form.productUnit" placeholder="输入生产厂商" />
         </el-form-item>
         <el-form-item label="供货工厂" label-width="80">
-          <el-input v-model="form.supplyUnit" />
+          <el-input v-model="form.supplyUnit" placeholder="输入供货工厂" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -217,35 +217,35 @@ const addDrugs = () => {
 }
 
 const handleEdit = (index: number, row: Drugs) => {
-  form.id = row.id.toString(),
-    form.name = row.name,
-    form.num = row.num.toString(),
-    form.price = row.price.toString(),
-    form.purchasePrice = row.purchasePrice.toString()
+  form.id = row.id.toString();
+  form.name = row.name;
+  form.num = row.num.toString();
+  form.price = row.price.toString();
+  form.purchasePrice = row.purchasePrice.toString();
 
   form.introduceDate = row.introduceDate.toString();
   form.productDate = row.productDate.toString();
   form.qualityPeriod = row.qualityPeriod.toString();
 
-  form.productUnit = row.productUnit,
-    form.supplyUnit = row.supplyUnit,
+  form.productUnit = row.productUnit;
+  form.supplyUnit = row.supplyUnit;
 
-    dialogVisible.value = true
+  dialogVisible.value = true
 }
 
 const clearForm = () => {
-  form.id = '',
-    form.name = '',
-    form.num = '',
-    form.price = '',
-    form.purchasePrice = ''
+  form.id = '';
+  form.name = '';
+  form.num = '';
+  form.price = '';
+  form.purchasePrice = '';
 
   form.introduceDate = '';
   form.productDate = '';
   form.qualityPeriod = '';
 
-  form.productUnit = '',
-    form.supplyUnit = '';
+  form.productUnit = '';
+  form.supplyUnit = '';
 }
 
 const updateDrugs = () => {
@@ -284,11 +284,19 @@ const updateDrugs = () => {
 
 const closeUpdate = () => {
   dialogVisible.value = false;
+  ElMessage({
+    type: 'info',
+    message: '取消更新',
+  })
   clearForm();
 }
 
 const closeAdd = () => {
   addVisble.value = false;
+  ElMessage({
+    type: 'info',
+    message: '取消添加',
+  })
   clearForm();
 }
 
